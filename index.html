@@ -135,7 +135,7 @@
             border-radius: 50%;
             align-self: center;
             margin-left: 2px;
-            animation: animation 15s linear infinite ;
+            /* animation: animation 15s linear infinite ; */
         }
 
         @keyframes animation {
@@ -542,7 +542,7 @@
         </div>
         <div class="right_all">
             <div class="right">
-                <div class="circle">
+                <div class="circle" id="circle">
                     <img src="./images/sheep.jpg" id="sheep"/>
                 </div>
                 <div class="control">
@@ -701,6 +701,7 @@
     var prograss=document.getElementById("progress");
     var bar=document.getElementById("bar");
     var schedule_btn=document.getElementById("schedule_btn");
+    var sheep=document.getElementById("sheep");
     flag1=1;
     playbtn.onclick=function(){
         if(flag1==1){
@@ -734,6 +735,7 @@
                 bar.style.width=mymusic.currentTime*width/allTime+"px";
                 schedule_btn.style.left=mymusic.currentTime*(width-schedule_btn.offsetWidth)/allTime+"px";
             },1000)
+
             // 静音
             flag2=1;
             var mymute=document.getElementById("mymute");
@@ -747,13 +749,15 @@
                 }
             }
             //旋转效果
-
+            sheep.style.animation="animation 15s linear infinite";
+            sheep.style.animationPlayState="running";
         }
         else{
             flag1=1;
             mymusic.pause();
             playbtn.setAttribute("class","stop");
-            clearInterval(timeid)
+            clearInterval(timeid);
+            sheep.style.animationPlayState="paused";
         }
     }
 
