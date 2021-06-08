@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        li{
+            list-style:none;
+        }
+        a{
+            text-decoration: none;
+            color: white;
+        }
+        a:hover{
+            color: orange;
+        }
+        header{
+            display: flex;
+            height: 50px;
+            line-height: 50px;
+            background-color: black;
+            color: white;
+            justify-content: space-around;
+        }
+        .top-left>ul{
+            display: flex;
+            margin-left: 10px;
+            width: 300px;
+            justify-content: space-between;
+        }
+
+        /* 靠右文字 */
+        .top-right a{
+            font-size: 12px;
+            color: rgb(190, 189, 189);
+        }
+        .top-right>ul{
+            float: left;
+            display: flex;
+            justify-content: space-between;
+            width: 300px;
+        }
+        .top-right ul a:hover{
+            color: orange;
+        }
+        .star{
+            width: 20px;
+	        height: 20px;
+            background: url(./images/1.png);
+            background-position:  -227px -20px;
+            position: relative;
+            top:13px;
+        }
+
+        .login>ul{
+            display:flex;
+            font-size: 10px;
+            margin-left: 80px;
+            width:100px;
+            justify-content: space-between;
+        }
+        /* search */
+        .search_all{
+            margin-top: 8px;
+            margin-left: 10px;
+        }
+        form{
+            margin-top: -58px;
+            margin-left: 10px;
+        }
+        .search{
+            background-color: transparent;
+            width: 120px;
+            border:none;
+            outline: none;
+        }
+        /*中间部分*/
+        .middle{
+            width: 1200px;
+            margin:0 auto;
+            margin-top: 50px;
+            display: flex;
+            justify-content: space-around;
+        }
+        /* 歌词 */
+        .left{
+            text-align: center;
+        }
+        h1{
+            color: rgb(90, 86, 86);
+        }
+        .first-line{
+            display: flex;
+            justify-content: space-around;
+            width: 400px;
+            margin: 5px auto;
+            margin-top: 35px;
+        }
+        .first-line p span{
+            color: orange;
+        }
+        .second-line p{
+            display: inline-block;
+            font-size: 5px;
+            margin-bottom: 5px;
+        }
+        hr{
+            width: 600px;
+        }
+        .lyrics p{
+            margin: 10px auto;
+        }
+        .lyrics{
+            margin-top: 10px;
+            height: 400px;
+            overflow-y: scroll;
+        }
+
+        /* 旋转 */
+        .circle{
+            display: flex;
+            width: 185px;
+            height: 185px;
+            border-radius: 50%;
+            border: 1px solid rgb(196, 192, 192);
+            margin: 0 auto;
+        } 
+        .circle>img{
+            border-radius: 50%;
+            align-self: center;
+            margin-left: 2px;
+            animation: animation 15s linear infinite ;
+        }
+
+        @keyframes animation {
+            0%{
+                transform:rotate(0deg);
+            }
+            100%{
+                transform:rotate(360deg);
+            }
+        }
+        /* 总控制台 */
+        .control{
+            display: flex;
+            align-items: center;
+        }
+        /* 暂停 */
+        .stop{
+            width: 40px;
+	        height: 40px;
+            background-image: url(./images/control.jpg);
+	        background-position: -110px 0px;
+        }
+        .stop:hover{
+            background-position: -162px 0px;
+        }
+        /* 开始 */
+        .play{
+            width:40px;
+            height:40px;
+            background-image: url(./images/control.jpg);
+            background-position: -207px 0px;
+        }
+        .play:hover{
+            background-position: -207px -48px;
+        }
+        /* 进度框 */
+        .control .progress{
+            width:440px;
+            height:4px;
+            background-color:#dad3d3;
+            margin-left:10px;
+        }
+        /* 播放进度条变黄 */
+        .bar{
+            width:0px;
+            height:4px;
+            background-color: #ffcd2d;
+        }
+        /* 圆点 */
+        .progress #schedule_btn{
+            width: 10px;
+            height: 10px;
+            background-image: url(./images/control.jpg);
+            background-position: -95px 0px;
+            display: block;
+            position: relative;
+            top: -8px;
+        }
+            
+        
+        /* 播放时间 */
+        .time{
+            margin-left: 10px;
+            color:#dad3d3;
+            font-size: 15px;
+        }
+        /* 静音 */
+        .mute{
+            width: 23px;
+            height: 20px;
+            background-image: url(./images/control.jpg);
+            background-position: -45px 0px;
+            margin-left: 10px;
+        }
+        .mute:hover{
+            width: 23px;
+            height: 20px;
+            background-image: url(./images/control.jpg);
+            background-position: -68px 0px;
+        }
+     
+        /* 下载这首歌 */
+        .download{
+            display: flex;
+        }
+        .right_all .download .downimage{
+            width: 18px;
+            height: 18px;
+            background-image: url(./images/control.jpg);
+            background-position: 0px 0px;
+            z-index: 2;
+            margin-left: 20px;
+            margin-top: 10px;
+            margin-right: 5px;
+        }
+        .right_all .download>a{
+            color:black;
+            line-height: 40px;
+            text-align: center;
+        }
+        .right_all .download{
+            width: 200px;
+            height: 40px;
+            background-image: url(./images/control.jpg);
+            background-position: 0px -48px;
+            z-index: 1;
+            margin: 0 auto;
+            margin-top:50px;
+        }
+
+        /* 评论区 */
+        .latest-comments{
+            margin: 100px auto;
+            display: flex;
+            justify-content: center;
+        }
+        .latest-comments .icon img{
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+        .textbox{
+            width: 250px;
+            height: 54px;
+            background-image: url(./images/showAdBg.jpg);
+            margin-top: 15px;
+        }
+        .textbox a{
+            color:rgb(85, 44, 236);
+            margin-left: 185px;
+            position: absolute;
+            top:565px;
+            font-size: 5px;
+        }
+        .textbox h1{
+            font-size: 10px;
+            color:gray;
+            margin-left: 20px;
+            margin-top: 5px;
+        }
+        .textbox>div{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            font-size: 14px;
+            width: 130px;
+            margin-top: 10px;
+            margin-left: 15px;
+
+        }
+        .gif{
+            width: 12px;
+            height: 12px;
+        }
+
+        /* 评论区 */
+        .comments{
+            width:1000px;
+            margin: 0 auto;
+        }
+        .number{
+            margin: 10px 0;
+        }
+        .number>span:nth-child(2){
+            margin-left: 10px;
+            font-size: 5px;
+        }
+        .comments hr{
+            width: 1000px;
+        }
+        .comments>.express{
+            display: flex;
+            width: 1000px;
+            margin-top: 50px;
+            justify-content: center;
+        }
+        .express div{
+            margin-right: 20px;
+        }
+        .icon2 img{
+            width:50px;
+            height: 50px;
+        }
+        textarea{
+            width: 600px;
+            height: 100px;
+        }
+        textarea::-webkit-input-placeholder {
+            position: absolute;
+            top:5px;
+            left: 5px;
+        }
+        /* 评论框下方文字 */
+        .express-bottom{
+            display: flex;
+            width: 600px;
+            justify-content: space-between;
+            margin-left: 240px;
+            margin-top: 15px;
+        }
+        .express-right{
+            display: flex;
+            width:180px;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .express-right p{
+            font-size: 5px;
+        }
+        .express-right #btn{
+            width:80px;
+            background-color: orange;
+            color: white;
+            border: none;
+        }
+
+        /* 分页 */
+        .page{
+            display: flex;
+            width: 300px;
+            justify-content: space-around;
+            margin: 0 auto;
+            margin-top: 30px;
+        }
+        .page a{
+            color: black;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+        }
+        .page a:nth-child(even){
+            background-image: url(./images/page.jpg);
+        }
+        .page a:nth-child(1){
+            background-image: url(./images/page.jpg);
+        }
+        .page a:nth-child(3){
+            background-image: url(./images/page.jpg);
+        }
+        .page a:nth-child(7){
+            background-image: url(./images/page.jpg);
+        }
+        .page a:nth-child(even):hover{
+            color: white;
+            background-image:url(./images/current.jpg);
+        }
+        .page a:nth-child(1):hover{
+            color: white;
+            background-image:url(./images/current.jpg);
+        }
+        a:nth-child(3):hover{
+            color: white;
+            background-image:url(./images/current.jpg);
+        }
+        a:nth-child(7):hover{
+            color: white;
+            background-image:url(./images/current.jpg);
+        }
+        .ellipsis{
+            cursor: pointer;
+        }
+
+        /* 精彩评论 */
+        .good{
+            width:1000px;
+            margin: 0 auto;
+            margin-top: 10px;
+        }
+        .good>hr{
+            width: 1000px;;
+        }
+        .good>p{
+            font-size: 15px;
+            margin: 5px 0px;
+        }
+        .show{
+            width: 1000px;
+            height: 300px;
+            margin: 15px 0px;
+        }
+        .show  div [class$="_icon"] img{
+            width: 60px;
+            height: 60px;
+        }
+        .show>div{
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px dashed gray;
+            margin-bottom: 20px;
+        }
+        .show>div>div{
+            display: flex;
+            flex-direction: column;
+        }
+        .show>div>div:nth-child(2){
+            width: 900px;
+        }
+        .name{
+            width: 900px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .name p:nth-child(1){
+            color: orange;
+        }
+        .name p:nth-child(2){
+            font-size: 5px;   
+        }
+        .content{
+            width:900px;
+            height:50px;
+            margin-top: 5px;
+        }
+        .replay{
+            display: flex;
+            justify-content: space-between;
+        }
+        .subtime{
+            width: 200px;;
+            color: gray;
+        }
+        .thumb{
+            display: flex;
+            width:100px;
+            justify-content: space-between;
+        }
+        #thumb1{
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="images/kuwo.jpg" class="kuwo"/>
+        <div class="top-left">
+            <ul>
+                <li><a href="#">首页</a></li>
+                <li><a href="#">榜单</a></li>
+                <li><a href="#">歌手</a></li>
+                <li><a href="#">下载酷我客户端</a></li>
+            </ul>
+        </div>
+        <div class="top-right">
+            <ul>
+                <div class="star"></div>
+                <li><a href="#">美女秀</a></li>
+                <div class="star"></div>
+                <li><a href="#">酷我耳机</a></li>
+                <div class="star"></div>
+                <li><a href="#">VIP会员</a></li>
+                <div class="star"></div>
+                <li><a href="#">i听</a></li>
+            </ul>
+        </div>
+        <div class="login">
+            <ul>
+                <li><a href="#">更多服务</a></li>
+                <li><a href="#">登录</a></li>
+                <li><a href="#">^</a></li>
+            </ul>
+        </div>
+        <div class="search_all">
+            <img src="./images/search.png" class="searchbg"/>
+            <form>
+                <input type="text" name="search" placeholder="找到好音乐" class="search"/>
+            </form>
+        </div>
+    </header>
+    <div class="middle">
+        <div class="left">
+            <h1>喜羊羊</h1>
+            <div class="first-line">
+                <p>专辑：<span>儿歌大全</span></p>
+                <p>歌手：<span>华语群星</span></p>
+                <p>分享</p>
+                <img src="./images/commentIcon.jpg"/>
+                <p><span>评论</span></p>
+            </div>
+            <div class="second-line">
+                <p>上传时间：2015-10-02 歌曲来源：民大相思湖网球社</p>
+            </div>
+            <hr/>
+            <div class="lyrics">
+                <p>喜羊羊美羊羊懒羊羊沸羊羊</p>
+                <p>慢羊羊软绵绵红太狼灰太狼</p>
+                <p>别看我只是一只羊</p>
+                <p>绿草因为我变的更香</p>
+                <p>天空因为我变的更蓝</p>
+                <p>白云因为我变的柔软</p>
+                <p>别看我只是一只羊</p>
+                <p>羊儿的聪明难以想像</p>
+                <p>天再高心情一样奔放</p>
+                <p>每天都追赶太阳</p>
+                <p>有什么难题 去牵绊我 都不会去心伤</p>
+                <p>有什么危险 在我面前 也不会去慌乱</p>
+                <p>就算有狼群 把我追捕 也当做游戏一场</p>
+                <p>在什么时间 都爱开心 笑容都会飞翔</p>
+                <p>就算会摔倒 站了起来 永远不会沮丧</p>
+                <p>在所有天气 拥有叫人 大笑的力量</p>
+                <p>虽然我只是只羊</p>
+            </div>
+        </div>
+        <div class="right_all">
+            <div class="right">
+                <div class="circle">
+                    <img src="./images/sheep.jpg" id="sheep"/>
+                </div>
+                <div class="control">
+                    <audio autoplay="autoplay" id="mymusic">
+                        <source src="./video/喜羊羊.mp3" type="audio/mp3"/>
+                    </audio>
+                    <!-- js控制音频播放开始结束，以及图片变化-->
+                    <div class="stop" id="playbtn"></div>
+                    <div class="progress" id="progress">
+                        <!-- js控制黄色区域width随着时间变化变长 -->
+                        <div class="bar" id="bar"></div>
+                        <!-- js控制圆点left左移 -->
+                        <a href="##" class="schedule_btn" id="schedule_btn"></a>
+                    </div>
+                    <!--js转换时间，显示-->
+                    <p class="time" id="time">00:00</p>
+                    <!-- js控制mute设置 -->
+                    <div class="mute" id="mymute"></div>
+                </div>
+            </div>
+            <div class="download">
+                <div class="downimage"></div>
+                <a href="#">免费下载这首歌</a>
+            </div>
+            <div class="latest-comments">
+                <div class="icon">
+                    <img src="./images/郭子仪.jpg"/>
+                </div>
+                <div class="textbox">
+                    <h1>郭子仪——H5班</h1>
+                    <div>
+                        <img src="./images/gif.gif" class="gif"/>
+                        <p>喜羊羊与灰太狼</p>
+                    </div>
+                    <a href="#">去现场 ></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="comments">
+        <div class="number">
+            <span>评论</span>
+            <span>1703条评论</span>
+        </div>
+        <hr/>
+        <div class="express">
+            <div class="icon2">
+                <img src="./images/郭子仪.jpg"/>
+            </div>
+            <!-- 多行文本域,JS获取value值，本地存储  -->
+            <textarea id="text" placeholder="分享你的音乐见解"></textarea>
+        </div>
+        <div class="express-bottom">
+            <div class="emoji">
+                <img src="./images/commenticon.png"/>
+            </div>
+            <div class="express-right">
+                <p>已输入<span id="count">0</span>个字</p>
+                <button id="btn">评论</button>
+            </div>
+        </div>
+    </div>
+    <div class="good">
+        <p>精彩评论</p>
+        <hr>
+        <div class="show">
+            <div class="first">
+                <div class="first_icon">
+                    <img src="./images/郭子仪.jpg"/>
+                </div>
+                <div class="record1">
+                    <div class="name">
+                        <p>郭子仪</p>
+                        <p class="share">分享</p>
+                    </div>
+                    <!-- 本地存储 -->
+                    <div class="content"></div>
+                    <div class="replay">
+                        <div class="subtime"></div>
+                        <div class="thumb" id="thumb1">
+                            <span>删除</span>
+                            <span>
+                                163
+                                <img src="./images/bg2.jpg"/>
+                            </span>
+                            <span>回复</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="second">
+                <div class="second_icon">
+                    <img src="./images/k.jpg"/>
+                </div>
+                <div class="record2">
+                    <div class="name">
+                        <p>Forget</p>
+                        <p class="share">分享</p>
+                    </div>
+                    <!-- 本地存储 -->
+                    <div class="content"></div>
+                    <!-- 底部 -->
+                    <div class="replay">
+                        <div class="subtime"></div>
+                        <div class="thumb">
+                            <span>
+                                149
+                                <img src="./images/bg2.jpg"/>
+                            </span>
+                            <span>回复</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="third">
+                <div class="third_icon">
+                    <img src="./images/k.jpg"/>
+                </div>
+                <div class="record3">
+                    <div class="name">
+                        <p>亚里士多德</p>
+                        <p class="share">分享</p>
+                    </div>
+                    <!-- 本地存储 -->
+                    <div class="content"></div>
+                    <!-- 底部 -->
+                    <div class="replay">
+                        <div class="subtime"></div>
+                        <div class="thumb">
+                            <span>
+                                106
+                                <img src="./images/bg2.jpg"/>
+                            </span>
+                            <span>回复</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page">
+        <a href="#"><</a>
+        <a href="#">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a class="ellipsis">…</a>
+        <a href="#">17</a>
+        <a href="#">></a>
+    </div>
+</body>
+<script>
+    // 暂停开始播放
+    var mymusic=document.getElementById("mymusic");
+    var playbtn=document.getElementById("playbtn");
+    var time=document.getElementById("time");
+    var prograss=document.getElementById("progress");
+    var bar=document.getElementById("bar");
+    var schedule_btn=document.getElementById("schedule_btn");
+    flag1=1;
+    playbtn.onclick=function(){
+        if(flag1==1){
+            flag1=0;
+            // 播放开始
+            mymusic.play();
+            // 图标变化
+            playbtn.setAttribute("class","play");
+            // 播放时间设置
+            var timeid=setInterval(function(){
+                var now=mymusic.currentTime;
+                minute=parseInt(now/60);
+                seconds=parseInt(now%60);
+                //时间换算
+                if(minute<1&&seconds>=10){
+                    time.innerHTML=`00:${seconds}`;
+                }else if(minute<1&&seconds<10){
+                    time.innerHTML=`00:0${seconds}`;
+                }else if(minute>=1 && minute<10 && seconds<10){
+                    time.innerHTML=`0${minute}:0${seconds}`;
+                }else if(minute>=1 && minute<10 && seconds>=10){
+                    time.innerHTML=`0${minute}:${seconds}`;
+                }else if(minute>=10 && seconds<10){
+                    time.innerHTML=`${minute}:0${seconds}`;
+                }else if(minute>=10 && seconds>=10){
+                    time.innerHTML=`${minute}:${seconds}`;
+                }
+                var allTime=mymusic.duration;
+                //进度条设置
+                width=progress.clientWidth;
+                bar.style.width=mymusic.currentTime*width/allTime+"px";
+                schedule_btn.style.left=mymusic.currentTime*(width-schedule_btn.offsetWidth)/allTime+"px";
+            },1000)
+            // 静音
+            flag2=1;
+            var mymute=document.getElementById("mymute");
+            mymute.onclick=function(){
+                if(flag2==1){
+                    mymusic.muted=true;
+                    flag2=0;
+                }else{
+                    mymusic.muted=false;
+                    flag2=1;
+                }
+            }
+            //旋转效果
+
+        }
+        else{
+            flag1=1;
+            mymusic.pause();
+            playbtn.setAttribute("class","stop");
+            clearInterval(timeid)
+        }
+    }
+
+    // 多行文本域
+    var count=document.getElementById("count");
+    var text=document.getElementById("text");
+    var subtime=document.getElementsByClassName("subtime");
+    text.onkeyup=function(){
+        count.innerHTML=text.value.length;
+    }
+    // 本地存储
+    var btn=document.getElementById("btn");
+    var content=document.getElementsByClassName("content");
+    // 存储在本地
+    function save(data,sub_time){
+        // 数组名              本地存储键值
+        var contentList=localStorage['contentList'];
+        if(contentList==null || contentList==""){
+            contentList="[]";
+        }
+        // 反序列化
+        contentList=JSON.parse(contentList);//字符串对象化
+        var Obj={
+            "data":data,
+            "sub_time":sub_time
+        }
+        // JSON对象里存储
+        contentList.push(Obj);
+        // JSON对象字符串化
+        contentList=JSON.stringify(contentList);
+        // 存储字符串，为一个数组
+        localStorage["contentList"]=contentList;
+    }
+    //显示在页面上
+    function getSave(){
+        var contentList=localStorage['contentList'];
+        if(contentList==null || contentList==""){
+            contentList="[]";
+        }
+        contentList=JSON.parse(contentList);
+        for(var i=0;i<contentList.length;i++){
+            // 时间顺序展示
+            content[2-i%3].innerHTML=contentList[i]["data"];
+            subtime[2-i%3].innerHTML=contentList[i]["sub_time"];
+        }
+    }
+    /*
+		1.把数据保存到本地存储
+		2.把数据显示到页面上
+	*/
+    btn.onclick=function(){
+        //获取提交时的时间
+        var date=new Date();
+        var year=date.getFullYear();
+        var month=date.getMonth()+1;
+        var dd=date.getDate();
+        var hour=date.getHours();
+        var minute=date.getMinutes();
+        var seconds=date.getSeconds();
+        sub_time=`${year}-${month}-${dd} ${hour}:${minute}:${seconds}`;
+  
+        save(text.value,sub_time);
+        getSave();
+        
+    }
+    window.onload=function(){
+        getSave();
+    }
+</script>
+</html>
